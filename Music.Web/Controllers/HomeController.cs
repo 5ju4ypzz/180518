@@ -8,6 +8,5 @@ namespace Music.Web.Controllers
         {
             return View();
         }
-       
     }
 }

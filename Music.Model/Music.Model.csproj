@@ -31,10 +31,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -49,26 +49,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\ALBUM.cs" />
-    <Compile Include="Models\AUTHOR.cs" />
-    <Compile Include="Models\COMMENT_ALBUM.cs" />
-    <Compile Include="Models\COMMENT_SINGER.cs" />
-    <Compile Include="Models\COMMENT_SONG.cs" />
-    <Compile Include="Models\GENRE.cs" />
-    <Compile Include="Models\MSDbContext.cs" />
-    <Compile Include="Models\SINGER.cs" />
-    <Compile Include="Models\SONG.cs" />
-    <Compile Include="Models\UPLOAD_ALBUM.cs" />
-    <Compile Include="Models\UPLOAD_SONG.cs" />
-    <Compile Include="Models\USER.cs" />
+    <Compile Include="Dao\AuthorDao.cs" />
+    <Compile Include="Dao\UserDao.cs" />
+    <Compile Include="EF\album.cs" />
+    <Compile Include="EF\author.cs" />
+    <Compile Include="EF\comment_album.cs" />
+    <Compile Include="EF\comment_singer.cs" />
+    <Compile Include="EF\comment_song.cs" />
+    <Compile Include="EF\genre.cs" />
+    <Compile Include="EF\MusicDbContext.cs" />
+    <Compile Include="EF\singer.cs" />
+    <Compile Include="EF\song.cs" />
+    <Compile Include="EF\upload_album.cs" />
+    <Compile Include="EF\upload_song.cs" />
+    <Compile Include="EF\user.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Abstract\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
