@@ -24,16 +24,28 @@ namespace Music.Model.Dao
             return db.users.SingleOrDefault(x => x.email == email);
         }
 
-        public bool Login(string email, string password)
+        public int Login(string email, string password)
         {
-            var result = db.users.Count(x => x.email == email && x.password == password);
-            if (result > 0)
+            var result = db.users.SingleOrDefault(x => x.email == email);
+            if (result == null)
             {
-                return true;
+                return 0;
             }
             else
             {
-                return false;
+                if (result.status==false)
+                {
+                    return -1;
+                }
+                else
+                {
+                    if (result.password == password)
+                    {
+                        return 1;
+                    }
+                    else
+                        return -2;
+                }              
             }
         }
     }

@@ -18,8 +18,8 @@ namespace Music.Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var dao = new UserDao();
-                var result = dao.Login(model.email, model.password);
-                if (result)
+                var result = dao.Login(model.email, Encryptor.MD5Hash(model.password));
+                if (result==1)
                 {
                     var user = dao.GetById(model.email);
                     var userSession = new UserLogin();
@@ -28,9 +28,21 @@ namespace Music.Web.Areas.Admin.Controllers
                     Session.Add(CommonConstants.USER_SESSION, userSession);
                     return RedirectToAction("Index", "Login");
                 }
+                else if (result == 0)
+                {
+                    ModelState.AddModelError("", "Tài khoản không tồn tại!");
+                }
+                else if (result == -1)
+                {
+                    ModelState.AddModelError("", "Tài khoản đang bị khóa!");
+                }
+                else if (result == -2)
+                {
+                    ModelState.AddModelError("", "Mật khẩu không đúng!");
+                }
                 else
                 {
-                    ModelState.AddModelError("", "Đăng nhập không đúng");
+                    ModelState.AddModelError("", "Đăng nhập không thành công !");
                 }
             }
             return View();

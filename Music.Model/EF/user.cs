@@ -43,6 +43,8 @@ namespace Music.Model.EF
 
         public int? user_level { get; set; }
 
+        public bool? status { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<comment_album> comment_album { get; set; }
 
