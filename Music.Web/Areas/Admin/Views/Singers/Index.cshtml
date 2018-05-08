@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Music.Model.EF.singer>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.singer_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.singer_nickname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.singer_sex)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.singer_country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.singer_image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.singer_cover_image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.singer_dateofbirth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.singer_description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.singer_createdate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.singer_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.singer_nickname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.singer_sex)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.singer_country)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.singer_image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.singer_cover_image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.singer_dateofbirth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.singer_description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.singer_createdate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.singer_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.singer_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.singer_id })
+        </td>
+    </tr>
+}
+</table>

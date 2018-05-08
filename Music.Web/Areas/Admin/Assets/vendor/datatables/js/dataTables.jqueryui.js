@@ -125,11 +125,11 @@
             cell
                 .find('span.' + classes.sSortIcon)
                 .removeClass(
-                sort_prefix + 'triangle-1-n' + " " +
-                sort_prefix + 'triangle-1-s' + " " +
-                sort_prefix + 'carat-2-n-s' + " " +
-                sort_prefix + 'carat-1-n' + " " +
-                sort_prefix + 'carat-1-s'
+                    sort_prefix + 'triangle-1-n' + " " +
+                    sort_prefix + 'triangle-1-s' + " " +
+                    sort_prefix + 'carat-2-n-s' + " " +
+                    sort_prefix + 'carat-1-n' + " " +
+                    sort_prefix + 'carat-1-s'
                 )
                 .addClass(columns[colIdx] == 'asc' ?
                     sort_prefix + 'triangle-1-n' : columns[colIdx] == 'desc' ?

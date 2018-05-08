@@ -1,0 +1,937 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="album">
+          <Key>
+            <PropertyRef Name="album_id" />
+          </Key>
+          <Property Name="album_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="author_id" Type="int" />
+          <Property Name="album_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="album_createdate" Type="datetime" />
+          <Property Name="album_image" Type="nvarchar" MaxLength="250" />
+          <Property Name="album_view" Type="int" />
+          <Property Name="album_viewed_day" Type="int" />
+          <Property Name="album_viewed_week" Type="int" />
+          <Property Name="album_viewed_month" Type="int" />
+        </EntityType>
+        <EntityType Name="author">
+          <Key>
+            <PropertyRef Name="author_id" />
+          </Key>
+          <Property Name="author_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="author_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="author_createdate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="comment_album">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="album_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="album_id" Type="int" Nullable="false" />
+          <Property Name="comment_album_content" Type="nvarchar" MaxLength="250" />
+          <Property Name="comment_album_createdate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="comment_singer">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="singer_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="singer_id" Type="int" Nullable="false" />
+          <Property Name="comment_singer_content" Type="nvarchar" MaxLength="250" />
+          <Property Name="comment_singer_createdate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="comment_song">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="song_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="song_id" Type="int" Nullable="false" />
+          <Property Name="comment_song_content" Type="nvarchar" MaxLength="250" />
+          <Property Name="comment_song_createdate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="genre">
+          <Key>
+            <PropertyRef Name="genre_id" />
+          </Key>
+          <Property Name="genre_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="genre_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="genre_desciption" Type="nvarchar" MaxLength="250" />
+          <Property Name="genre_createdate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="singer">
+          <Key>
+            <PropertyRef Name="singer_id" />
+          </Key>
+          <Property Name="singer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="singer_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="singer_nickname" Type="nvarchar" MaxLength="50" />
+          <Property Name="singer_sex" Type="bit" Nullable="false" />
+          <Property Name="singer_country" Type="nvarchar" MaxLength="50" />
+          <Property Name="singer_image" Type="nvarchar" MaxLength="250" />
+          <Property Name="singer_cover_image" Type="nvarchar" MaxLength="250" />
+          <Property Name="singer_dateofbirth" Type="date" />
+          <Property Name="singer_description" Type="nvarchar" MaxLength="3000" />
+          <Property Name="singer_createdate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="song">
+          <Key>
+            <PropertyRef Name="song_id" />
+          </Key>
+          <Property Name="song_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="album_id" Type="int" />
+          <Property Name="genre_id" Type="int" />
+          <Property Name="song_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="song_path" Type="nvarchar" MaxLength="250" />
+          <Property Name="song_lyric" Type="nvarchar" MaxLength="3000" />
+          <Property Name="song_image" Type="nvarchar" MaxLength="250" />
+          <Property Name="song_view" Type="int" />
+          <Property Name="song_viewed_day" Type="int" />
+          <Property Name="song_viewed_week" Type="int" />
+          <Property Name="song_viewed_month" Type="int" />
+          <Property Name="song_download" Type="int" />
+          <Property Name="song_downloaded_week" Type="int" />
+          <Property Name="song_downloaded_month" Type="int" />
+          <Property Name="song_createdate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="song_singer">
+          <Key>
+            <PropertyRef Name="singer_id" />
+            <PropertyRef Name="song_id" />
+          </Key>
+          <Property Name="singer_id" Type="int" Nullable="false" />
+          <Property Name="song_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="upload_album">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="album_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="album_id" Type="int" Nullable="false" />
+          <Property Name="upload_album_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="upload_song">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="song_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="song_id" Type="int" Nullable="false" />
+          <Property Name="upload_song_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" />
+          <Property Name="password" Type="nvarchar" MaxLength="32" />
+          <Property Name="user_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_dateofbirth" Type="datetime" />
+          <Property Name="user_sex" Type="bit" Nullable="false" />
+          <Property Name="user_address" Type="nvarchar" MaxLength="100" />
+          <Property Name="user_phone" Type="numeric" Precision="20" Scale="0" />
+          <Property Name="user_image" Type="nvarchar" MaxLength="250" />
+          <Property Name="user_level" Type="int" />
+          <Property Name="status" Type="bit" Nullable="false" />
+          <Property Name="user_createdate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_dbo_album_dbo_author_author_id">
+          <End Role="author" Type="Self.author" Multiplicity="0..1" />
+          <End Role="album" Type="Self.album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="author">
+              <PropertyRef Name="author_id" />
+            </Principal>
+            <Dependent Role="album">
+              <PropertyRef Name="author_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_comment_album_dbo_album_album_id">
+          <End Role="album" Type="Self.album" Multiplicity="1" />
+          <End Role="comment_album" Type="Self.comment_album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="album">
+              <PropertyRef Name="album_id" />
+            </Principal>
+            <Dependent Role="comment_album">
+              <PropertyRef Name="album_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_comment_album_dbo_user_user_id">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="comment_album" Type="Self.comment_album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="comment_album">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_comment_singer_dbo_singer_singer_id">
+          <End Role="singer" Type="Self.singer" Multiplicity="1" />
+          <End Role="comment_singer" Type="Self.comment_singer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="singer">
+              <PropertyRef Name="singer_id" />
+            </Principal>
+            <Dependent Role="comment_singer">
+              <PropertyRef Name="singer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_comment_song_dbo_song_song_id">
+          <End Role="song" Type="Self.song" Multiplicity="1" />
+          <End Role="comment_song" Type="Self.comment_song" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="song">
+              <PropertyRef Name="song_id" />
+            </Principal>
+            <Dependent Role="comment_song">
+              <PropertyRef Name="song_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_song_dbo_album_album_id">
+          <End Role="album" Type="Self.album" Multiplicity="0..1" />
+          <End Role="song" Type="Self.song" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="album">
+              <PropertyRef Name="album_id" />
+            </Principal>
+            <Dependent Role="song">
+              <PropertyRef Name="album_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_song_dbo_genre_genre_id">
+          <End Role="genre" Type="Self.genre" Multiplicity="0..1" />
+          <End Role="song" Type="Self.song" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="genre">
+              <PropertyRef Name="genre_id" />
+            </Principal>
+            <Dependent Role="song">
+              <PropertyRef Name="genre_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_song_singer_dbo_singer_singer_id">
+          <End Role="singer" Type="Self.singer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="song_singer" Type="Self.song_singer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="singer">
+              <PropertyRef Name="singer_id" />
+            </Principal>
+            <Dependent Role="song_singer">
+              <PropertyRef Name="singer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_song_singer_dbo_song_song_id">
+          <End Role="song" Type="Self.song" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="song_singer" Type="Self.song_singer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="song">
+              <PropertyRef Name="song_id" />
+            </Principal>
+            <Dependent Role="song_singer">
+              <PropertyRef Name="song_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_upload_album_dbo_album_album_id">
+          <End Role="album" Type="Self.album" Multiplicity="1" />
+          <End Role="upload_album" Type="Self.upload_album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="album">
+              <PropertyRef Name="album_id" />
+            </Principal>
+            <Dependent Role="upload_album">
+              <PropertyRef Name="album_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_upload_album_dbo_user_user_id">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="upload_album" Type="Self.upload_album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="upload_album">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_upload_song_dbo_song_song_id">
+          <End Role="song" Type="Self.song" Multiplicity="1" />
+          <End Role="upload_song" Type="Self.upload_song" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="song">
+              <PropertyRef Name="song_id" />
+            </Principal>
+            <Dependent Role="upload_song">
+              <PropertyRef Name="song_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_upload_song_dbo_user_user_id">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="upload_song" Type="Self.upload_song" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="upload_song">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MSModelStoreContainer">
+          <EntitySet Name="album" EntityType="Self.album" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="author" EntityType="Self.author" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="comment_album" EntityType="Self.comment_album" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="comment_singer" EntityType="Self.comment_singer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="comment_song" EntityType="Self.comment_song" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="genre" EntityType="Self.genre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="singer" EntityType="Self.singer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="song" EntityType="Self.song" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="song_singer" EntityType="Self.song_singer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="upload_album" EntityType="Self.upload_album" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="upload_song" EntityType="Self.upload_song" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_album_dbo_author_author_id" Association="Self.FK_dbo_album_dbo_author_author_id">
+            <End Role="author" EntitySet="author" />
+            <End Role="album" EntitySet="album" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_comment_album_dbo_album_album_id" Association="Self.FK_dbo_comment_album_dbo_album_album_id">
+            <End Role="album" EntitySet="album" />
+            <End Role="comment_album" EntitySet="comment_album" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_comment_album_dbo_user_user_id" Association="Self.FK_dbo_comment_album_dbo_user_user_id">
+            <End Role="user" EntitySet="user" />
+            <End Role="comment_album" EntitySet="comment_album" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_comment_singer_dbo_singer_singer_id" Association="Self.FK_dbo_comment_singer_dbo_singer_singer_id">
+            <End Role="singer" EntitySet="singer" />
+            <End Role="comment_singer" EntitySet="comment_singer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_comment_song_dbo_song_song_id" Association="Self.FK_dbo_comment_song_dbo_song_song_id">
+            <End Role="song" EntitySet="song" />
+            <End Role="comment_song" EntitySet="comment_song" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_song_dbo_album_album_id" Association="Self.FK_dbo_song_dbo_album_album_id">
+            <End Role="album" EntitySet="album" />
+            <End Role="song" EntitySet="song" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_song_dbo_genre_genre_id" Association="Self.FK_dbo_song_dbo_genre_genre_id">
+            <End Role="genre" EntitySet="genre" />
+            <End Role="song" EntitySet="song" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_song_singer_dbo_singer_singer_id" Association="Self.FK_dbo_song_singer_dbo_singer_singer_id">
+            <End Role="singer" EntitySet="singer" />
+            <End Role="song_singer" EntitySet="song_singer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_song_singer_dbo_song_song_id" Association="Self.FK_dbo_song_singer_dbo_song_song_id">
+            <End Role="song" EntitySet="song" />
+            <End Role="song_singer" EntitySet="song_singer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_upload_album_dbo_album_album_id" Association="Self.FK_dbo_upload_album_dbo_album_album_id">
+            <End Role="album" EntitySet="album" />
+            <End Role="upload_album" EntitySet="upload_album" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_upload_album_dbo_user_user_id" Association="Self.FK_dbo_upload_album_dbo_user_user_id">
+            <End Role="user" EntitySet="user" />
+            <End Role="upload_album" EntitySet="upload_album" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_upload_song_dbo_song_song_id" Association="Self.FK_dbo_upload_song_dbo_song_song_id">
+            <End Role="song" EntitySet="song" />
+            <End Role="upload_song" EntitySet="upload_song" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_upload_song_dbo_user_user_id" Association="Self.FK_dbo_upload_song_dbo_user_user_id">
+            <End Role="user" EntitySet="user" />
+            <End Role="upload_song" EntitySet="upload_song" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="album">
+          <Key>
+            <PropertyRef Name="album_id" />
+          </Key>
+          <Property Name="album_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="author_id" Type="Int32" />
+          <Property Name="album_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="album_createdate" Type="DateTime" Precision="3" />
+          <Property Name="album_image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="album_view" Type="Int32" />
+          <Property Name="album_viewed_day" Type="Int32" />
+          <Property Name="album_viewed_week" Type="Int32" />
+          <Property Name="album_viewed_month" Type="Int32" />
+          <NavigationProperty Name="author" Relationship="Self.FK_dbo_album_dbo_author_author_id" FromRole="album" ToRole="author" />
+          <NavigationProperty Name="comment_album" Relationship="Self.FK_dbo_comment_album_dbo_album_album_id" FromRole="album" ToRole="comment_album" />
+          <NavigationProperty Name="songs" Relationship="Self.FK_dbo_song_dbo_album_album_id" FromRole="album" ToRole="song" />
+          <NavigationProperty Name="upload_album" Relationship="Self.FK_dbo_upload_album_dbo_album_album_id" FromRole="album" ToRole="upload_album" />
+        </EntityType>
+        <EntityType Name="author">
+          <Key>
+            <PropertyRef Name="author_id" />
+          </Key>
+          <Property Name="author_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="author_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="author_createdate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="albums" Relationship="Self.FK_dbo_album_dbo_author_author_id" FromRole="author" ToRole="album" />
+        </EntityType>
+        <EntityType Name="comment_album">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="album_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="album_id" Type="Int32" Nullable="false" />
+          <Property Name="comment_album_content" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="comment_album_createdate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="album" Relationship="Self.FK_dbo_comment_album_dbo_album_album_id" FromRole="comment_album" ToRole="album" />
+          <NavigationProperty Name="user" Relationship="Self.FK_dbo_comment_album_dbo_user_user_id" FromRole="comment_album" ToRole="user" />
+        </EntityType>
+        <EntityType Name="comment_singer">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="singer_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="singer_id" Type="Int32" Nullable="false" />
+          <Property Name="comment_singer_content" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="comment_singer_createdate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="singer" Relationship="Self.FK_dbo_comment_singer_dbo_singer_singer_id" FromRole="comment_singer" ToRole="singer" />
+        </EntityType>
+        <EntityType Name="comment_song">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="song_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="song_id" Type="Int32" Nullable="false" />
+          <Property Name="comment_song_content" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="comment_song_createdate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="song" Relationship="Self.FK_dbo_comment_song_dbo_song_song_id" FromRole="comment_song" ToRole="song" />
+        </EntityType>
+        <EntityType Name="genre">
+          <Key>
+            <PropertyRef Name="genre_id" />
+          </Key>
+          <Property Name="genre_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="genre_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="genre_desciption" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="genre_createdate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="songs" Relationship="Self.FK_dbo_song_dbo_genre_genre_id" FromRole="genre" ToRole="song" />
+        </EntityType>
+        <EntityType Name="singer">
+          <Key>
+            <PropertyRef Name="singer_id" />
+          </Key>
+          <Property Name="singer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="singer_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="singer_nickname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="singer_sex" Type="Boolean" Nullable="false" />
+          <Property Name="singer_country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="singer_image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="singer_cover_image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="singer_dateofbirth" Type="DateTime" Precision="0" />
+          <Property Name="singer_description" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="singer_createdate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="comment_singer" Relationship="Self.FK_dbo_comment_singer_dbo_singer_singer_id" FromRole="singer" ToRole="comment_singer" />
+          <NavigationProperty Name="songs" Relationship="Self.song_singer" FromRole="singer" ToRole="song" />
+        </EntityType>
+        <EntityType Name="song">
+          <Key>
+            <PropertyRef Name="song_id" />
+          </Key>
+          <Property Name="song_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="album_id" Type="Int32" />
+          <Property Name="genre_id" Type="Int32" />
+          <Property Name="song_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="song_path" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="song_lyric" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="song_image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="song_view" Type="Int32" />
+          <Property Name="song_viewed_day" Type="Int32" />
+          <Property Name="song_viewed_week" Type="Int32" />
+          <Property Name="song_viewed_month" Type="Int32" />
+          <Property Name="song_download" Type="Int32" />
+          <Property Name="song_downloaded_week" Type="Int32" />
+          <Property Name="song_downloaded_month" Type="Int32" />
+          <Property Name="song_createdate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="album" Relationship="Self.FK_dbo_song_dbo_album_album_id" FromRole="song" ToRole="album" />
+          <NavigationProperty Name="comment_song" Relationship="Self.FK_dbo_comment_song_dbo_song_song_id" FromRole="song" ToRole="comment_song" />
+          <NavigationProperty Name="genre" Relationship="Self.FK_dbo_song_dbo_genre_genre_id" FromRole="song" ToRole="genre" />
+          <NavigationProperty Name="upload_song" Relationship="Self.FK_dbo_upload_song_dbo_song_song_id" FromRole="song" ToRole="upload_song" />
+          <NavigationProperty Name="singers" Relationship="Self.song_singer" FromRole="song" ToRole="singer" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="upload_album">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="album_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="album_id" Type="Int32" Nullable="false" />
+          <Property Name="upload_album_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="album" Relationship="Self.FK_dbo_upload_album_dbo_album_album_id" FromRole="upload_album" ToRole="album" />
+          <NavigationProperty Name="user" Relationship="Self.FK_dbo_upload_album_dbo_user_user_id" FromRole="upload_album" ToRole="user" />
+        </EntityType>
+        <EntityType Name="upload_song">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="song_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="song_id" Type="Int32" Nullable="false" />
+          <Property Name="upload_song_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="song" Relationship="Self.FK_dbo_upload_song_dbo_song_song_id" FromRole="upload_song" ToRole="song" />
+          <NavigationProperty Name="user" Relationship="Self.FK_dbo_upload_song_dbo_user_user_id" FromRole="upload_song" ToRole="user" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_dateofbirth" Type="DateTime" Precision="3" />
+          <Property Name="user_sex" Type="Boolean" Nullable="false" />
+          <Property Name="user_address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="user_phone" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="user_image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="user_level" Type="Int32" />
+          <Property Name="status" Type="Boolean" Nullable="false" />
+          <Property Name="user_createdate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="comment_album" Relationship="Self.FK_dbo_comment_album_dbo_user_user_id" FromRole="user" ToRole="comment_album" />
+          <NavigationProperty Name="upload_album" Relationship="Self.FK_dbo_upload_album_dbo_user_user_id" FromRole="user" ToRole="upload_album" />
+          <NavigationProperty Name="upload_song" Relationship="Self.FK_dbo_upload_song_dbo_user_user_id" FromRole="user" ToRole="upload_song" />
+        </EntityType>
+        <Association Name="FK_dbo_album_dbo_author_author_id">
+          <End Role="author" Type="Self.author" Multiplicity="0..1" />
+          <End Role="album" Type="Self.album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="author">
+              <PropertyRef Name="author_id" />
+            </Principal>
+            <Dependent Role="album">
+              <PropertyRef Name="author_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_comment_album_dbo_album_album_id">
+          <End Role="album" Type="Self.album" Multiplicity="1" />
+          <End Role="comment_album" Type="Self.comment_album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="album">
+              <PropertyRef Name="album_id" />
+            </Principal>
+            <Dependent Role="comment_album">
+              <PropertyRef Name="album_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_song_dbo_album_album_id">
+          <End Role="album" Type="Self.album" Multiplicity="0..1" />
+          <End Role="song" Type="Self.song" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="album">
+              <PropertyRef Name="album_id" />
+            </Principal>
+            <Dependent Role="song">
+              <PropertyRef Name="album_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_upload_album_dbo_album_album_id">
+          <End Role="album" Type="Self.album" Multiplicity="1" />
+          <End Role="upload_album" Type="Self.upload_album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="album">
+              <PropertyRef Name="album_id" />
+            </Principal>
+            <Dependent Role="upload_album">
+              <PropertyRef Name="album_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_comment_album_dbo_user_user_id">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="comment_album" Type="Self.comment_album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="comment_album">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_comment_singer_dbo_singer_singer_id">
+          <End Role="singer" Type="Self.singer" Multiplicity="1" />
+          <End Role="comment_singer" Type="Self.comment_singer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="singer">
+              <PropertyRef Name="singer_id" />
+            </Principal>
+            <Dependent Role="comment_singer">
+              <PropertyRef Name="singer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_comment_song_dbo_song_song_id">
+          <End Role="song" Type="Self.song" Multiplicity="1" />
+          <End Role="comment_song" Type="Self.comment_song" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="song">
+              <PropertyRef Name="song_id" />
+            </Principal>
+            <Dependent Role="comment_song">
+              <PropertyRef Name="song_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_song_dbo_genre_genre_id">
+          <End Role="genre" Type="Self.genre" Multiplicity="0..1" />
+          <End Role="song" Type="Self.song" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="genre">
+              <PropertyRef Name="genre_id" />
+            </Principal>
+            <Dependent Role="song">
+              <PropertyRef Name="genre_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_upload_song_dbo_song_song_id">
+          <End Role="song" Type="Self.song" Multiplicity="1" />
+          <End Role="upload_song" Type="Self.upload_song" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="song">
+              <PropertyRef Name="song_id" />
+            </Principal>
+            <Dependent Role="upload_song">
+              <PropertyRef Name="song_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_upload_album_dbo_user_user_id">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="upload_album" Type="Self.upload_album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="upload_album">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_upload_song_dbo_user_user_id">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="upload_song" Type="Self.upload_song" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="upload_song">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="song_singer">
+          <End Role="singer" Type="Self.singer" Multiplicity="*" />
+          <End Role="song" Type="Self.song" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="MSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="albums" EntityType="Self.album" />
+          <EntitySet Name="authors" EntityType="Self.author" />
+          <EntitySet Name="comment_album" EntityType="Self.comment_album" />
+          <EntitySet Name="comment_singer" EntityType="Self.comment_singer" />
+          <EntitySet Name="comment_song" EntityType="Self.comment_song" />
+          <EntitySet Name="genres" EntityType="Self.genre" />
+          <EntitySet Name="singers" EntityType="Self.singer" />
+          <EntitySet Name="songs" EntityType="Self.song" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="upload_album" EntityType="Self.upload_album" />
+          <EntitySet Name="upload_song" EntityType="Self.upload_song" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <AssociationSet Name="FK_dbo_album_dbo_author_author_id" Association="Self.FK_dbo_album_dbo_author_author_id">
+            <End Role="author" EntitySet="authors" />
+            <End Role="album" EntitySet="albums" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_comment_album_dbo_album_album_id" Association="Self.FK_dbo_comment_album_dbo_album_album_id">
+            <End Role="album" EntitySet="albums" />
+            <End Role="comment_album" EntitySet="comment_album" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_song_dbo_album_album_id" Association="Self.FK_dbo_song_dbo_album_album_id">
+            <End Role="album" EntitySet="albums" />
+            <End Role="song" EntitySet="songs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_upload_album_dbo_album_album_id" Association="Self.FK_dbo_upload_album_dbo_album_album_id">
+            <End Role="album" EntitySet="albums" />
+            <End Role="upload_album" EntitySet="upload_album" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_comment_album_dbo_user_user_id" Association="Self.FK_dbo_comment_album_dbo_user_user_id">
+            <End Role="user" EntitySet="users" />
+            <End Role="comment_album" EntitySet="comment_album" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_comment_singer_dbo_singer_singer_id" Association="Self.FK_dbo_comment_singer_dbo_singer_singer_id">
+            <End Role="singer" EntitySet="singers" />
+            <End Role="comment_singer" EntitySet="comment_singer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_comment_song_dbo_song_song_id" Association="Self.FK_dbo_comment_song_dbo_song_song_id">
+            <End Role="song" EntitySet="songs" />
+            <End Role="comment_song" EntitySet="comment_song" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_song_dbo_genre_genre_id" Association="Self.FK_dbo_song_dbo_genre_genre_id">
+            <End Role="genre" EntitySet="genres" />
+            <End Role="song" EntitySet="songs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_upload_song_dbo_song_song_id" Association="Self.FK_dbo_upload_song_dbo_song_song_id">
+            <End Role="song" EntitySet="songs" />
+            <End Role="upload_song" EntitySet="upload_song" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_upload_album_dbo_user_user_id" Association="Self.FK_dbo_upload_album_dbo_user_user_id">
+            <End Role="user" EntitySet="users" />
+            <End Role="upload_album" EntitySet="upload_album" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_upload_song_dbo_user_user_id" Association="Self.FK_dbo_upload_song_dbo_user_user_id">
+            <End Role="user" EntitySet="users" />
+            <End Role="upload_song" EntitySet="upload_song" />
+          </AssociationSet>
+          <AssociationSet Name="song_singer" Association="Self.song_singer">
+            <End Role="singer" EntitySet="singers" />
+            <End Role="song" EntitySet="songs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MSModelStoreContainer" CdmEntityContainer="MSEntities">
+          <EntitySetMapping Name="albums">
+            <EntityTypeMapping TypeName="MSModel.album">
+              <MappingFragment StoreEntitySet="album">
+                <ScalarProperty Name="album_id" ColumnName="album_id" />
+                <ScalarProperty Name="author_id" ColumnName="author_id" />
+                <ScalarProperty Name="album_name" ColumnName="album_name" />
+                <ScalarProperty Name="album_createdate" ColumnName="album_createdate" />
+                <ScalarProperty Name="album_image" ColumnName="album_image" />
+                <ScalarProperty Name="album_view" ColumnName="album_view" />
+                <ScalarProperty Name="album_viewed_day" ColumnName="album_viewed_day" />
+                <ScalarProperty Name="album_viewed_week" ColumnName="album_viewed_week" />
+                <ScalarProperty Name="album_viewed_month" ColumnName="album_viewed_month" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="authors">
+            <EntityTypeMapping TypeName="MSModel.author">
+              <MappingFragment StoreEntitySet="author">
+                <ScalarProperty Name="author_id" ColumnName="author_id" />
+                <ScalarProperty Name="author_name" ColumnName="author_name" />
+                <ScalarProperty Name="author_createdate" ColumnName="author_createdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="comment_album">
+            <EntityTypeMapping TypeName="MSModel.comment_album">
+              <MappingFragment StoreEntitySet="comment_album">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="album_id" ColumnName="album_id" />
+                <ScalarProperty Name="comment_album_content" ColumnName="comment_album_content" />
+                <ScalarProperty Name="comment_album_createdate" ColumnName="comment_album_createdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="comment_singer">
+            <EntityTypeMapping TypeName="MSModel.comment_singer">
+              <MappingFragment StoreEntitySet="comment_singer">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="singer_id" ColumnName="singer_id" />
+                <ScalarProperty Name="comment_singer_content" ColumnName="comment_singer_content" />
+                <ScalarProperty Name="comment_singer_createdate" ColumnName="comment_singer_createdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="comment_song">
+            <EntityTypeMapping TypeName="MSModel.comment_song">
+              <MappingFragment StoreEntitySet="comment_song">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="song_id" ColumnName="song_id" />
+                <ScalarProperty Name="comment_song_content" ColumnName="comment_song_content" />
+                <ScalarProperty Name="comment_song_createdate" ColumnName="comment_song_createdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="genres">
+            <EntityTypeMapping TypeName="MSModel.genre">
+              <MappingFragment StoreEntitySet="genre">
+                <ScalarProperty Name="genre_id" ColumnName="genre_id" />
+                <ScalarProperty Name="genre_name" ColumnName="genre_name" />
+                <ScalarProperty Name="genre_desciption" ColumnName="genre_desciption" />
+                <ScalarProperty Name="genre_createdate" ColumnName="genre_createdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="singers">
+            <EntityTypeMapping TypeName="MSModel.singer">
+              <MappingFragment StoreEntitySet="singer">
+                <ScalarProperty Name="singer_id" ColumnName="singer_id" />
+                <ScalarProperty Name="singer_name" ColumnName="singer_name" />
+                <ScalarProperty Name="singer_nickname" ColumnName="singer_nickname" />
+                <ScalarProperty Name="singer_sex" ColumnName="singer_sex" />
+                <ScalarProperty Name="singer_country" ColumnName="singer_country" />
+                <ScalarProperty Name="singer_image" ColumnName="singer_image" />
+                <ScalarProperty Name="singer_cover_image" ColumnName="singer_cover_image" />
+                <ScalarProperty Name="singer_dateofbirth" ColumnName="singer_dateofbirth" />
+                <ScalarProperty Name="singer_description" ColumnName="singer_description" />
+                <ScalarProperty Name="singer_createdate" ColumnName="singer_createdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="songs">
+            <EntityTypeMapping TypeName="MSModel.song">
+              <MappingFragment StoreEntitySet="song">
+                <ScalarProperty Name="song_id" ColumnName="song_id" />
+                <ScalarProperty Name="album_id" ColumnName="album_id" />
+                <ScalarProperty Name="genre_id" ColumnName="genre_id" />
+                <ScalarProperty Name="song_name" ColumnName="song_name" />
+                <ScalarProperty Name="song_path" ColumnName="song_path" />
+                <ScalarProperty Name="song_lyric" ColumnName="song_lyric" />
+                <ScalarProperty Name="song_image" ColumnName="song_image" />
+                <ScalarProperty Name="song_view" ColumnName="song_view" />
+                <ScalarProperty Name="song_viewed_day" ColumnName="song_viewed_day" />
+                <ScalarProperty Name="song_viewed_week" ColumnName="song_viewed_week" />
+                <ScalarProperty Name="song_viewed_month" ColumnName="song_viewed_month" />
+                <ScalarProperty Name="song_download" ColumnName="song_download" />
+                <ScalarProperty Name="song_downloaded_week" ColumnName="song_downloaded_week" />
+                <ScalarProperty Name="song_downloaded_month" ColumnName="song_downloaded_month" />
+                <ScalarProperty Name="song_createdate" ColumnName="song_createdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MSModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="upload_album">
+            <EntityTypeMapping TypeName="MSModel.upload_album">
+              <MappingFragment StoreEntitySet="upload_album">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="album_id" ColumnName="album_id" />
+                <ScalarProperty Name="upload_album_date" ColumnName="upload_album_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="upload_song">
+            <EntityTypeMapping TypeName="MSModel.upload_song">
+              <MappingFragment StoreEntitySet="upload_song">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="song_id" ColumnName="song_id" />
+                <ScalarProperty Name="upload_song_date" ColumnName="upload_song_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="MSModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="user_dateofbirth" ColumnName="user_dateofbirth" />
+                <ScalarProperty Name="user_sex" ColumnName="user_sex" />
+                <ScalarProperty Name="user_address" ColumnName="user_address" />
+                <ScalarProperty Name="user_phone" ColumnName="user_phone" />
+                <ScalarProperty Name="user_image" ColumnName="user_image" />
+                <ScalarProperty Name="user_level" ColumnName="user_level" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="user_createdate" ColumnName="user_createdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="song_singer" TypeName="MSModel.song_singer" StoreEntitySet="song_singer">
+            <EndProperty Name="singer">
+              <ScalarProperty Name="singer_id" ColumnName="singer_id" />
+            </EndProperty>
+            <EndProperty Name="song">
+              <ScalarProperty Name="song_id" ColumnName="song_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

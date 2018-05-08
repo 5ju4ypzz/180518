@@ -3,13 +3,13 @@ using System.Linq;
 
 namespace Music.Model.Dao
 {
-    public class UserDao
+    public class UserDAO
     {
-        private MusicDbContext db = null;
+        private MSEntities db = null;
 
-        public UserDao()
+        public UserDAO()
         {
-            db = new MusicDbContext();
+            db = new MSEntities();
         }
 
         public int Insert(user entity)
@@ -33,7 +33,7 @@ namespace Music.Model.Dao
             }
             else
             {
-                if (result.status==false)
+                if (result.status == false)
                 {
                     return -1;
                 }
@@ -45,7 +45,7 @@ namespace Music.Model.Dao
                     }
                     else
                         return -2;
-                }              
+                }
             }
         }
     }

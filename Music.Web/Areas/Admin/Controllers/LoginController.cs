@@ -17,9 +17,9 @@ namespace Music.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var dao = new UserDao();
+                var dao = new UserDAO();
                 var result = dao.Login(model.email, Encryptor.MD5Hash(model.password));
-                if (result==1)
+                if (result == 1)
                 {
                     var user = dao.GetById(model.email);
                     var userSession = new UserLogin();

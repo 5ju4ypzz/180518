@@ -2,9 +2,9 @@
 
 namespace Music.Model.Dao
 {
-    public class AuthorDao
+    public class AuthorDAO
     {
-        private MusicDbContext db = null;
+        private MSEntities db = null;
 
         public int Insert(author entity)
         {

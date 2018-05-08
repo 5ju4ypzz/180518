@@ -1,0 +1,106 @@
+﻿@model Music.Model.EF.user
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>user</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user_dateofbirth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user_dateofbirth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user_sex)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user_sex)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user_address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user_address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user_phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user_phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user_image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user_image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user_level)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user_level)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user_createdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user_createdate)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.user_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

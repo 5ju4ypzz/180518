@@ -49,29 +49,86 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dao\AuthorDao.cs" />
-    <Compile Include="Dao\UserDao.cs" />
-    <Compile Include="EF\album.cs" />
-    <Compile Include="EF\author.cs" />
-    <Compile Include="EF\comment_album.cs" />
-    <Compile Include="EF\comment_singer.cs" />
-    <Compile Include="EF\comment_song.cs" />
-    <Compile Include="EF\genre.cs" />
-    <Compile Include="EF\MusicDbContext.cs" />
-    <Compile Include="EF\singer.cs" />
-    <Compile Include="EF\song.cs" />
-    <Compile Include="EF\upload_album.cs" />
-    <Compile Include="EF\upload_song.cs" />
-    <Compile Include="EF\user.cs" />
+    <Compile Include="Dao\AuthorDAO.cs" />
+    <Compile Include="Dao\UserDAO.cs" />
+    <Compile Include="EF\album.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\author.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\comment_album.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\comment_singer.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\comment_song.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\DBContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\DBContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\DBContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EF\genre.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\singer.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\song.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\sysdiagram.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\upload_album.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\upload_song.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\user.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="EF\DBContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DBContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EF\DBContext.edmx.diagram">
+      <DependentUpon>DBContext.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EF\DBContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBContext.edmx</DependentUpon>
+      <LastGenOutput>DBContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EF\DBContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBContext.edmx</DependentUpon>
+      <LastGenOutput>DBContext.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

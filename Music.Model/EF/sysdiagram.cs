@@ -12,13 +12,12 @@ namespace Music.Model.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class comment_song
+    public partial class sysdiagram
     {
-        public int user_id { get; set; }
-        public int song_id { get; set; }
-        public string comment_song_content { get; set; }
-        public Nullable<System.DateTime> comment_song_createdate { get; set; }
-    
-        public virtual song song { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }
