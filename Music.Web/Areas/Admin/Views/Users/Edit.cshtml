@@ -5,7 +5,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Chỉnh sửa @Html.DisplayFor(model => model.user_name) - @Html.DisplayFor(model => model.email)</h2>
+<h2 class="text-center">Chỉnh sửa @Html.DisplayFor(model => model.user_name) - @Html.DisplayFor(model => model.email)</h2>
 <hr />
 
 @using (Html.BeginForm())
@@ -102,14 +102,16 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-success" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div class="form-group">
+    <div class="col-md-10">
+        @Html.ActionLink("Back to List", "Index")
+    </div>
 </div>
 
 @section Scripts {

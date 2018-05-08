@@ -8,7 +8,7 @@ namespace Music.Web.Areas.Admin.Controllers
 {
     public class UsersController : Controller
     {
-        private MSEntities db = new MSEntities();
+        private MusicDbContext db = new MusicDbContext();
 
         // GET: Admin/Users
         public ActionResult Index()
