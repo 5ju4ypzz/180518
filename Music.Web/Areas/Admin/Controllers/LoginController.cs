@@ -47,10 +47,5 @@ namespace Music.Web.Areas.Admin.Controllers
             }
             return View();
         }
-
-        public ActionResult ListMusic()
-        {
-            return View();
-        }
     }
 }

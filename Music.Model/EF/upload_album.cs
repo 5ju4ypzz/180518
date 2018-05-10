@@ -18,10 +18,7 @@ namespace Music.Model.EF
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int album_id { get; set; }
 
-        [Column(TypeName = "timestamp")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [MaxLength(8)]
-        public byte[] upload_album_date { get; set; }
+        public DateTime? upload_album_date { get; set; }
 
         public virtual album album { get; set; }
 

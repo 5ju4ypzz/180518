@@ -21,10 +21,7 @@ namespace Music.Model.EF
         [StringLength(250)]
         public string comment_singer_content { get; set; }
 
-        [Column(TypeName = "timestamp")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [MaxLength(8)]
-        public byte[] comment_singer_createdate { get; set; }
+        public DateTime? comment_singer_createdate { get; set; }
 
         public virtual singer singer { get; set; }
     }

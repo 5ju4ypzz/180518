@@ -47,10 +47,7 @@ namespace Music.Model.EF
 
         public int? user_level { get; set; }
 
-        [Column(TypeName = "timestamp")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [MaxLength(8)]
-        public byte[] user_createdate { get; set; }
+        public DateTime? user_createdate { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<comment_album> comment_album { get; set; }

@@ -5,11 +5,11 @@ namespace Music.Model.Dao
 {
     public class UserDAO
     {
-        private MusicDbContext db = null;
+        private DBContext db = null;
 
         public UserDAO()
         {
-            db = new MusicDbContext();
+            db = new DBContext();
         }
 
         public int Insert(user entity)

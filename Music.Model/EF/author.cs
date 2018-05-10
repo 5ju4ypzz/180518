@@ -21,10 +21,7 @@ namespace Music.Model.EF
         [StringLength(100)]
         public string author_name { get; set; }
 
-        [Column(TypeName = "timestamp")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [MaxLength(8)]
-        public byte[] author_createdate { get; set; }
+        public DateTime? author_createdate { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<album> albums { get; set; }
