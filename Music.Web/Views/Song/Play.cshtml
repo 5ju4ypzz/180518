@@ -1,0 +1,32 @@
+﻿@model Music.Model.EF.song
+@{
+    ViewBag.Title = @Html.DisplayFor(model => model.song_name);
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-8">
+        <h5>@Html.DisplayFor(model => model.song_name) - <a href="#">@Html.DisplayFor(model => model.author.author_name)</a></h5>
+        <img class="imagesmp3" src="@Url.Content(Model.song_image)" />
+
+        <audio controls="controls" class="width650px" src="@Url.Content(Model.song_path)" autoplay="autoplay"></audio>
+
+        <hr class="width650px align-content-start" />
+        <div class="width650px">
+            <h3>Lời bài hát - <strong>@Url.Content(Model.song_name)</strong></h3><br />
+            <p>
+                @Url.Content(Model.song_lyric)
+            </p>
+            <p>Đóng góp bởi: <a href="#">Kim Thanh Hoang</a></p>
+        </div>
+        <form action="/" method="post">
+            <div class="input-group">
+                <div class="input-group">
+                </div>
+                <textarea class="form-control" aria-label="With textarea" name="txtcmt"></textarea>
+            </div>
+            <input class="input-group-text" type="submit" name="cmd" value="Bình Luận" />
+        </form>
+    </div>
+
+    @RenderPage("~/Views/Shared/_TOP.cshtml")
+</div>

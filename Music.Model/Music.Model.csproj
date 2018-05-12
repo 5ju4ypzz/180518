@@ -50,20 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dao\AuthorDAO.cs" />
+    <Compile Include="Dao\LoginDAO.cs" />
     <Compile Include="Dao\UserDAO.cs" />
-    <Compile Include="EF\album.cs" />
-    <Compile Include="EF\author.cs" />
-    <Compile Include="EF\comment_album.cs" />
-    <Compile Include="EF\comment_singer.cs" />
-    <Compile Include="EF\comment_song.cs" />
-    <Compile Include="EF\genre.cs" />
-    <Compile Include="EF\ModelMusic.cs" />
-    <Compile Include="EF\singer.cs" />
-    <Compile Include="EF\song.cs" />
-    <Compile Include="EF\sysdiagram.cs" />
-    <Compile Include="EF\upload_album.cs" />
-    <Compile Include="EF\upload_song.cs" />
-    <Compile Include="EF\user.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -72,6 +60,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="EF\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

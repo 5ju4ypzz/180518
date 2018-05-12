@@ -1,7 +1,6 @@
 // Morris.js Charts sample data for SB Admin template
 
-$(function() {
-
+$(function () {
     // Area Chart
     Morris.Area({
         element: 'morris-area-chart',
@@ -179,7 +178,7 @@ $(function() {
         }, {
             d: '2012-10-31',
             visits: 1892
-        }, ],
+        },],
         // The name of the data record attribute that contains x-visitss.
         xkey: 'd',
         // A list of names of data record attributes that contain y-visitss.
@@ -222,6 +221,4 @@ $(function() {
         hideHover: 'auto',
         resize: true
     });
-
-
 });

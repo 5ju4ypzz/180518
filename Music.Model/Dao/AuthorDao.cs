@@ -4,7 +4,7 @@ namespace Music.Model.Dao
 {
     public class AuthorDAO
     {
-        private DBContext db = null;
+        private Model_12_05 db = null;
 
         public int Insert(author entity)
         {

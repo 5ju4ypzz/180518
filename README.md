@@ -1,2 +1,4 @@
 # 180518
-Trang nghe nhạc bằng asp.net mvc 5. Niên luận tin học ứng dụng K40 ĐHCT Kim Thanh Hoang
+Trang nghe nhạc bằng asp.net mvc 5. Niên luận tin học ứng dụng K40 ĐHCT Kim Thanh Hoang.
+@giveme.yourhand.32@gmail.com
+
