@@ -1,0 +1,89 @@
+﻿@model Music.Model.EF.album
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>album</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.singer.singer_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.singer.singer_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.album_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.album_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.album_createdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.album_createdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.album_image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.album_image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.album_view)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.album_view)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.album_viewed_day)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.album_viewed_day)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.album_viewed_week)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.album_viewed_week)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.album_viewed_month)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.album_viewed_month)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

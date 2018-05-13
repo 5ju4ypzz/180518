@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Music.Model.EF.album>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.singer.singer_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.album_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.album_createdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.album_image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.album_view)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.album_viewed_day)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.album_viewed_week)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.album_viewed_month)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.singer.singer_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.album_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.album_createdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.album_image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.album_view)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.album_viewed_day)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.album_viewed_week)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.album_viewed_month)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.album_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.album_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.album_id })
+        </td>
+    </tr>
+}
+
+</table>

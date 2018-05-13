@@ -1,13 +1,15 @@
-﻿@{
+﻿@model Music.Model.EF.song
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="row">
     <div class="col-md-8">
+
         <h5>Đàn Bà Cũ - <a href="#">Phạm Trưởng</a></h5>
         <img class="imagesmp3" src="~/source/images/356d0aeba28db53e43c22f0618c10f94_1514788859.jpg" />
         <audio controls="controls" class="width650px" autoplay="autoplay">
-            <source src="~/source/audio/Dan-Ba-Cu-Pham-Truong.mp3" type="audio/mpeg" />
+            <source src="@Url.Content(Model.song_path)" type="audio/mpeg" />
         </audio>
         <hr class="width650px align-content-start" />
         <div class="width650px">

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Music.Model.EF.song>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" id="Select-b" style="table-layout:fixed;">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.album.album_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.author.author_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.singer.singer_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.song_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.song_view)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.song_datemodify)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td id="appadd">
+                @Html.DisplayFor(modelItem => item.album.album_name)
+            </td>
+            <td id="appadd">
+                @Html.DisplayFor(modelItem => item.author.author_name)
+            </td>
+            <td id="appadd">
+                @Html.DisplayFor(modelItem => item.singer.singer_name)
+            </td>
+            <td id="appadd">
+                @Html.DisplayFor(modelItem => item.song_name)
+            </td>            
+            <td id="appadd">
+                @Html.DisplayFor(modelItem => item.song_view)
+            </td>
+
+            <td id="appadd">
+                @Html.DisplayFor(modelItem => item.song_datemodify)
+            </td>
+            <td id="appadd">
+                @Html.ActionLink("Edit", "Edit", new { id = item.song_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.song_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.song_id })
+            </td>
+        </tr>
+    }
+</table>

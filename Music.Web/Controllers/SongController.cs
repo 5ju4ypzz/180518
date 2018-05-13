@@ -7,11 +7,12 @@ namespace Music.Web.Controllers
 {
     public class SongController : Controller
     {
-        private Model_12_05 db = new Model_12_05();
+        private RunNow db = new RunNow();
 
         // GET: SongPlay
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
+            song song = db.songs.Find(id);
             return View();
         }
 

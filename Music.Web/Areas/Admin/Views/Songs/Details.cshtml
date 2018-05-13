@@ -1,0 +1,139 @@
+﻿@model Music.Model.EF.song
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>song</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.album.album_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.album.album_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.author.author_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.author.author_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.singer.singer_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.singer.singer_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.song_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.song_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.song_path)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.song_path)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.song_lyric)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.song_lyric)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.song_image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.song_image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.song_view)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.song_view)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.song_viewed_day)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.song_viewed_day)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.song_viewed_week)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.song_viewed_week)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.song_viewed_month)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.song_viewed_month)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.song_download)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.song_download)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.song_downloaded_week)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.song_downloaded_week)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.song_downloaded_month)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.song_downloaded_month)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.song_datemodify)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.song_datemodify)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.song_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

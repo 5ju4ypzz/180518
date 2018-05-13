@@ -4,11 +4,11 @@ namespace Music.Model.Dao
 {
     public class UserDAO
     {
-        private Model_12_05 db = null;
+        private RunNow db = null;
 
         public UserDAO()
         {
-            db = new Model_12_05();
+            db = new RunNow();
         }
 
         public int UserInfo()
