@@ -5,7 +5,6 @@
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("album")]
     public partial class album
@@ -24,6 +23,7 @@
 
         [StringLength(50)]
         [DisplayName("Tên Album")]
+        [Required(ErrorMessage = "Mời nhập tên Album!")]
         public string album_name { get; set; }
 
         [DisplayName("Ngày tạo")]

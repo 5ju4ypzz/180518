@@ -49,46 +49,29 @@ namespace Music.Web.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "song_id,album_id,singer_id,author_id,song_name,song_path,song_lyric,song_image,song_view,song_viewed_day,song_viewed_week,song_viewed_month,song_download,song_downloaded_week,song_downloaded_month,song_datemodify")] song song, HttpPostedFileBase fileUpload)
+        public async Task<ActionResult> Create([Bind(Include = "song_id,album_id,singer_id,author_id,song_name,song_path,song_lyric,song_image,song_view,song_viewed_day,song_viewed_week,song_viewed_month,song_download,song_downloaded_week,song_downloaded_month,song_datemodify")] song song, HttpPostedFileBase SUpload)
         {
             if (ModelState.IsValid)
             {
-                if (Request.Files.Count > 0)
+                var file = Request.Files[0];
+                if (file != null && file.ContentLength > 0)
                 {
-                    var file = Request.Files[0];
-                    if (file != null && file.ContentLength > 0)
-                    {
-                        var moresongname = Guid.NewGuid() + ".mp3";
-                        var moreimgname = Guid.NewGuid() + ".jpg";
-                        var pathSong = Path.Combine(Server.MapPath("~/source/audio/"), moresongname);
-                        song.song_path = "~/source/audio/" + moresongname;
-                        var pathImg = Path.Combine(Server.MapPath("~/source/images/"), moreimgname);
-                        song.song_image = "~/source/images/" + moreimgname;
-                        if (System.IO.File.Exists(pathSong))
-                        {
-                            pathSong = Path.Combine(Server.MapPath("~/source/audio/"), moresongname);
-                            song.song_path = "~/source/audio/" + moresongname;
-                            pathImg = Path.Combine(Server.MapPath("~/source/images/"), moreimgname);
-                            song.song_image = "~/source/images/" + moreimgname;
-                        }
-                        else
-                        {
-                            fileUpload.SaveAs(pathSong);
-                            fileUpload.SaveAs(pathImg);
-                        }
-                    }
-
-                    song.song_datemodify = DateTime.Now;
+                    string _FileName = Path.GetFileName(file.FileName);
+                    string _Ext = Path.GetExtension(file.FileName);
+                    string path = Path.Combine(Server.MapPath("~/source/audio/"), _FileName + "");
+                    song.song_path = "~/source/audio/" + _FileName;
+                    SUpload.SaveAs(path);
                 }
-                db.songs.Add(song);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                song.song_view = 1;
+                db.Entry(song).State = EntityState.Added;
+                song.song_datemodify = DateTime.Now;
             }
-
+            db.songs.Add(song);
+            await db.SaveChangesAsync();
             ViewBag.album_id = new SelectList(db.albums, "album_id", "album_name", song.album_id);
             ViewBag.author_id = new SelectList(db.authors, "author_id", "author_name", song.author_id);
             ViewBag.singer_id = new SelectList(db.singers, "singer_id", "singer_name", song.singer_id);
-            return View(song);
+            return RedirectToAction("Index");
         }
 
         // GET: Admin/Songs/Edit/5
@@ -115,7 +98,7 @@ namespace Music.Web.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "song_id,album_id,singer_id,author_id,song_name,song_path,song_lyric,song_image,song_view,song_viewed_day,song_viewed_week,song_viewed_month,song_download,song_downloaded_week,song_downloaded_month,song_datemodify")] song song, HttpPostedFileBase fileUpload)
+        public async Task<ActionResult> Edit([Bind(Include = "song_id,album_id,singer_id,author_id,song_name,song_path,song_lyric,song_image,song_view,song_viewed_day,song_viewed_week,song_viewed_month,song_download,song_downloaded_week,song_downloaded_month,song_datemodify")] song song, HttpPostedFileBase SUpload)
         {
             if (ModelState.IsValid)
             {
@@ -124,27 +107,17 @@ namespace Music.Web.Areas.Admin.Controllers
                     var file = Request.Files[i];
                     if (file != null && file.ContentLength > 0)
                     {
-                        var moresongname = Guid.NewGuid() + ".mp3";
-                        var moreimgname = Guid.NewGuid() + ".jpg";
-                        var pathSong = Path.Combine(Server.MapPath("~/source/audio/"), moresongname);
-                        song.song_path = "~/source/audio/" + moresongname;
-                        var pathImg = Path.Combine(Server.MapPath("~/source/images/"), moreimgname);
-                        song.song_image = "~/source/images/" + moreimgname;
-                        if (System.IO.File.Exists(pathSong))
+                        if (file != null && file.ContentLength > 0)
                         {
-                            pathSong = Path.Combine(Server.MapPath("~/source/audio/"), moresongname);
-                            song.song_path = "~/source/audio/" + moresongname;
-                            pathImg = Path.Combine(Server.MapPath("~/source/images/"), moreimgname);
-                            song.song_image = "~/source/images/" + moreimgname;
+                            string _FileName = Path.GetFileName(file.FileName);
+                            string _Ext = Path.GetExtension(file.FileName);
+                            string path = Path.Combine(Server.MapPath("~/source/audio/"), _FileName + "");
+                            song.song_path = "~/source/audio/" + _FileName;
+                            file.SaveAs(path);
                         }
-                        else
-                        {
-                            fileUpload.SaveAs(pathSong);
-                            fileUpload.SaveAs(pathImg);
-                        }
-                        song.song_datemodify = DateTime.Now;
-                        db.Entry(song).State = EntityState.Added;
                     }
+                    song.song_datemodify = DateTime.Now;
+                    db.Entry(song).State = EntityState.Added;
                 }
                 db.Entry(song).State = EntityState.Modified;
                 await db.SaveChangesAsync();
@@ -153,7 +126,7 @@ namespace Music.Web.Areas.Admin.Controllers
             ViewBag.album_id = new SelectList(db.albums, "album_id", "album_name", song.album_id);
             ViewBag.author_id = new SelectList(db.authors, "author_id", "author_name", song.author_id);
             ViewBag.singer_id = new SelectList(db.singers, "singer_id", "singer_name", song.singer_id);
-            return View(song);
+            return View();
         }
 
         // GET: Admin/Songs/Delete/5
@@ -177,15 +150,10 @@ namespace Music.Web.Areas.Admin.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             song song = await db.songs.FindAsync(id);
-            var pathSong = Path.Combine(Server.MapPath("~/source/audio/"), song.song_path + ".mp3");
-            var pathImg = Path.Combine(Server.MapPath("~/source/images/"), song.song_image + ".jpg");
-            if (System.IO.File.Exists(pathSong))
+            var path = Path.Combine(Server.MapPath("~/source/audio/"), song.song_path);
+            if (System.IO.File.Exists(path))
             {
-                System.IO.File.Delete(pathSong);
-            }
-            if (System.IO.File.Exists(pathImg))
-            {
-                System.IO.File.Delete(pathImg);
+                System.IO.File.Delete(path);
             }
             db.songs.Remove(song);
             await db.SaveChangesAsync();

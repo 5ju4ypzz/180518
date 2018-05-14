@@ -5,7 +5,6 @@
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("song")]
     public partial class song
@@ -42,10 +41,6 @@
         [StringLength(3000)]
         [DisplayName("Lời bài hát")]
         public string song_lyric { get; set; }
-
-        [DisplayName("Hình ảnh")]
-        [StringLength(250)]
-        public string song_image { get; set; }
 
         [DisplayName("Tổng lượt xem")]
         public int? song_view { get; set; }

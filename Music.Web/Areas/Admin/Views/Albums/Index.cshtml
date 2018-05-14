@@ -4,13 +4,10 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<h3>
+    @Html.ActionLink("Thêm Album mới", "Create")
+</h3>
+<table class="table" id="Select-b" style="table-layout:fixed;">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.singer.singer_name)
@@ -27,50 +24,32 @@
         <th>
             @Html.DisplayNameFor(model => model.album_view)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.album_viewed_day)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.album_viewed_week)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.album_viewed_month)
-        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.singer.singer_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.album_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.album_createdate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.album_image)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.album_view)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.album_viewed_day)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.album_viewed_week)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.album_viewed_month)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.album_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.album_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.album_id })
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.singer.singer_name)
+            </td>
+            <td id="appadd">
+                @Html.DisplayFor(modelItem => item.album_name)
+            </td>
+            <td id="appadd">
+                @Html.DisplayFor(modelItem => item.album_createdate)
+            </td>
+            <td>
+                <img width="170" height="50" src="@Url.Content(item.album_image)" alt="@Url.Content(item.album_name)" />
+            </td>
+            <td id="appadd">
+                @Html.DisplayFor(modelItem => item.album_view)
+            </td>
+            <td>
+                @Html.ActionLink(" ", "Edit", new { id = item.album_id }, new { @class = "fa fa-fw fa-edit" }) |
+                @Html.ActionLink(" ", "Details", new { id = item.album_id }, new { @class = "fa fa-fw fa-info" }) |
+                @Html.ActionLink(" ", "Delete", new { id = item.album_id }, new { @class = "fa fa-fw fa-trash" })
+            </td>
+        </tr>
+    }
 </table>
