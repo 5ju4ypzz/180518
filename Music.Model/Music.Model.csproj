@@ -49,8 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dao\AlbumDAO.cs" />
     <Compile Include="Dao\AuthorDAO.cs" />
     <Compile Include="Dao\LoginDAO.cs" />
+    <Compile Include="Dao\SongDAO.cs" />
     <Compile Include="Dao\UserDAO.cs" />
     <Compile Include="EF\album.cs" />
     <Compile Include="EF\author.cs" />

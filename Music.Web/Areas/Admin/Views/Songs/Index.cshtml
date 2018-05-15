@@ -46,7 +46,7 @@
             </td>
             <td id="appadd">
                 @Html.DisplayFor(modelItem => item.song_name)
-            </td>            
+            </td>
             <td id="appadd">
                 @Html.DisplayFor(modelItem => item.song_view)
             </td>
@@ -54,10 +54,14 @@
             <td id="appadd">
                 @Html.DisplayFor(modelItem => item.song_datemodify)
             </td>
-            <td id="appadd">
-                @Html.ActionLink("Edit", "Edit", new { id = item.song_id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.song_id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.song_id })
+            <td id="del">
+                @Html.ActionLink(" ", "Edit", new { id = item.song_id }, new { @class = "fa fa-fw fa-edit" }) |
+                @Html.ActionLink(" ", "Details", new { id = item.song_id }, new { @class = "fa fa-fw fa-info" }) |
+                @Ajax.ActionLink(" ","Delete",new { id = item.song_id },new AjaxOptions {
+               Confirm="Xóa "+item.song_name,
+               OnComplete="$('del').remove()",
+               HttpMethod = "Delete"
+           },new { @class="fa fa-fw fa-trash"})
             </td>
         </tr>
     }

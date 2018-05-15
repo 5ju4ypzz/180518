@@ -12,5 +12,20 @@ namespace Music.Model.Dao
             db.SaveChanges();
             return entity.author_id;
         }
+
+        public bool Delete(int? id)
+        {
+            try
+            {
+                var author = db.authors.Find(id);
+                db.authors.Remove(author);
+                db.SaveChanges();
+                return true;
+            }
+            catch (System.Exception)
+            {
+                return false;
+            }
+        }
     }
 }

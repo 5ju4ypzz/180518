@@ -11,7 +11,7 @@ namespace Music.Web.Areas.Admin.Controllers
             var session = (UserLogin)Session[CommonConstants.USER_SESSION];
             if (session == null)
             {
-                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Login", action = "Index", Area = "Admin" }));
+                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Login", action = "Login", Area = "Admin" }));
             }
             base.OnActionExecuting(filterContext);
         }

@@ -6,7 +6,7 @@
 }
 
 <h2>Details</h2>
-
+@Url.Content(Model.singer.singer_name)
 <div>
     <h4>song</h4>
     <hr />
@@ -57,14 +57,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.song_lyric)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.song_image)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.song_image)
         </dd>
 
         <dt>
@@ -130,7 +122,6 @@
         <dd>
             @Html.DisplayFor(model => model.song_datemodify)
         </dd>
-
     </dl>
 </div>
 <p>

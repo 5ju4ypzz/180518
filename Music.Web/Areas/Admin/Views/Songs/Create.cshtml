@@ -5,75 +5,66 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
-
-@using (Html.BeginForm("Create", "Songs", FormMethod.Post, new { @enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.album_id, "album_id", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-4">
-            @Html.DropDownList("album_id", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.album_id, "", new { @class = "text-danger" })
+<div class="col-md-12">
+    @using (Html.BeginForm("Create", "Songs", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.album_id, "album_id", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownList("album_id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.album_id, "", new { @class = "text-danger" })
+            </div>
         </div>
-        <br />
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.singer_id, "singer_id", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-4">
-            @Html.DropDownList("singer_id", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.singer_id, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.singer_id, "singer_id", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownList("singer_id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.singer_id, "", new { @class = "text-danger" })
+            </div>
         </div>
-        <br />
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.author_id, "author_id", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-4">
-            @Html.DropDownList("author_id", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.author_id, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.author_id, "author_id", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownList("author_id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.author_id, "", new { @class = "text-danger" })
+            </div>
         </div>
-        <br />
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.song_name, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-6">
-            @Html.EditorFor(model => model.song_name, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.song_name, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.song_name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.song_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.song_name, "", new { @class = "text-danger" })
+            </div>
         </div>
-        <br />
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.song_path, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-6">
-            <input type="file" name="SUpload" id="fileUpload" />
-            @ViewBag.ThongBao
-            @Html.ValidationMessageFor(model => model.song_path, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.song_path, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-auto">
+                <input type="file" name="SUpload" id="fileUpload" />
+                @ViewBag.ThongBao
+                @Html.ValidationMessageFor(model => model.song_path, "", new { @class = "text-danger" })
+            </div>
         </div>
-        <br />
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.song_lyric, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="input-group input-group-lg">
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.song_lyric, new { htmlAttributes = new { @class = "form-control", @rows = "5", @cols = "30" } })
+        <div class="form-group">
+            @Html.LabelFor(model => model.song_lyric, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-auto">
+                @Html.TextAreaFor(model => model.song_lyric, 15, 100, new { @class = "form-control ckeditor" })
                 @Html.ValidationMessageFor(model => model.song_lyric, "", new { @class = "text-danger" })
             </div>
         </div>
-        <br />
-    </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
         </div>
-    </div>
-}
-
+    }
+</div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

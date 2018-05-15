@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Music.Web.Areas.Admin.Controllers
 {
-    public class GenresController : Controller
+    public class GenresController : BaseController
     {
         private RunNow db = new RunNow();
 

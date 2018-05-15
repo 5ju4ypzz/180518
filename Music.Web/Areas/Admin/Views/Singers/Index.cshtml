@@ -39,38 +39,42 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.singer_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.singer_nickname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.singer_sex)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.singer_country)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.singer_image)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.singer_cover_image)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.singer_dateofbirth)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.singer_description)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.singer_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.singer_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.singer_id })
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.singer_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.singer_nickname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.singer_sex)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.singer_country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.singer_image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.singer_cover_image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.singer_dateofbirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.singer_description)
+            </td>
+            <td id="del">
+                @Html.ActionLink(" ", "Edit", new { id = item.singer_id }, new { @class = "fa fa-fw fa-edit" }) |
+                @Html.ActionLink(" ", "Details", new { id = item.singer_id }, new { @class = "fa fa-fw fa-info" }) |
+                @Ajax.ActionLink(" ","Delete",new { id = item.singer_id },new AjaxOptions {
+               Confirm="Xóa "+item.singer_nickname,
+               OnComplete="$('del').remove()",
+               HttpMethod = "Delete"
+           },new { @class="fa fa-fw fa-trash"})
+            </td>
+        </tr>
+    }
 </table>

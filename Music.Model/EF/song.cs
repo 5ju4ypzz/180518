@@ -32,6 +32,7 @@
 
         [StringLength(50)]
         [DisplayName("Tên bài hát")]
+        [Required(ErrorMessage = "Mời nhập tên bài hát")]
         public string song_name { get; set; }
 
         [StringLength(250)]
@@ -39,6 +40,7 @@
         public string song_path { get; set; }
 
         [StringLength(3000)]
+        [Required(ErrorMessage = "Mời nhập Lời bài hát")]
         [DisplayName("Lời bài hát")]
         public string song_lyric { get; set; }
 

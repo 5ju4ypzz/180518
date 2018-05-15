@@ -42,19 +42,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/Tôn trọng tác giả.
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-nav top-nav navbar-right pull-xs-right">
-                @*<li class="nav-item buy-now">
-                        <a href="http://www.strapui.com/themes/sb-admin-html-bootstrap-4/" class="btn btn-primary-outline buy-now-btn" role="button" style="padding: .375rem 1rem !important; border-color: #999;">Download Now</a>
-                    </li>*@
-                <li class="dropdown nav-item">
-                    <!-- <div class="dropdown"> -->
-                    <a class="nav-link dropdown-toggle" href="javascript:;" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-envelope"></i> <b class="caret"></b><span class="sr-only">(current)</span></a>
-                    <ul class="dropdown-menu message-dropdown"></ul>
-                    <!-- </div> -->
-                </li>
-                <li class="dropdown nav-item">
-                    <!-- <div class="dropdown"> -->
-                    <a href="javascript:;" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i> <b class="caret"></b><span class="sr-only">(current)</span></a>
-                </li>
                 <li class="dropdown nav-item">
                     <a href="javascript:;" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -81,51 +68,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/Tôn trọng tác giả.
                         <a href="/Admin/Users/Index"><i class="fa fa-fw fa-users"></i> DS Người dùng</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="#"><i class="fa fa-fw fa-list-alt"></i> DS Bài hát</a>
+                        <a href="~/Admin/Songs/Index"><i class="fa fa-fw fa-list-alt"></i> DS Bài hát</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="#"><i class="fa fa-fw fa-table"></i> DS Album</a>
+                        <a href="~/Admin/Albums/Index"><i class="fa fa-fw fa-table"></i> DS Album</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="#"><i class="fa fa-fw fa-table"></i> DS Chủ đề</a>
+                        <a href="~/Admin/Singers/Index"><i class="fa fa-fw fa-table"></i> DS Ca sĩ</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="#"><i class="fa fa-fw fa-table"></i> DS TOP 100</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#"><i class="fa fa-fw fa-table"></i> DS Thể loại</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#"><i class="fa fa-fw fa-table"></i> DS Chủ đề</a>
+                        <a href="~/Admin/Authors/Index"><i class="fa fa-fw fa-table"></i> DS Thể loại</a>
                     </li>
                     <li class="list-group-item">
                         <a href="~/Admin/Authors/Index"><i class="fa fa-fw fa-table"></i> DS Tác giả</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="list-group collapse">
-                            <li class="list-group-item">
-                                <a href="javascript:;">Dropdown Item</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="javascript:;">Dropdown Item</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
-                    </li>
-                    <li class="list-group-item more-themes">
-                        <a href="http://www.strapui.com/">Buy More Themes</a>
                     </li>
                 </ul>
             </div>
@@ -138,20 +93,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/Tôn trọng tác giả.
 
                 <!-- Page Heading -->
                 <div class="row">
-                        <div class="col-lg-12">
-                            <ol class="breadcrumb">
-                                <li>
-                                    <i class="fa fa-dashboard"></i>  <a href="index.html">Music Manager</a>
-                                </li>
-                                <li class="active">
-                                    <i class="fa fa-file"></i> @ViewBag.Title
-                                </li>
-                            </ol>
-                        </div>
-                        <div class="col-lg-12">
-                            @RenderBody()
-                        </div>
+                    <div class="col-lg-12">
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="index.html">Music Manager</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-file"></i> @ViewBag.Title
+                            </li>
+                        </ol>
                     </div>
+                    <div class="col-lg-12">
+                        @RenderBody()
+                    </div>
+                </div>
                 <!-- /.row -->
             </div>
             <!-- /.container-fluid -->
@@ -162,9 +117,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/Tôn trọng tác giả.
     <!-- jQuery -->
 
     <script src="~/Areas/Admin/Assets/js/jquery.js"></script>
-
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="~/Areas/Admin/Assets/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+    @*@Scripts.Render("~/bundles/ckeditor")*@
     @RenderSection("scripts", required: false)
 </body>
 </html>

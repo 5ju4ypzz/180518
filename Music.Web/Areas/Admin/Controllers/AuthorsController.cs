@@ -1,4 +1,5 @@
-﻿using Music.Model.EF;
+﻿using Music.Model.Dao;
+using Music.Model.EF;
 using System.Data.Entity;
 using System.Net;
 using System.Threading.Tasks;
@@ -6,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Music.Web.Areas.Admin.Controllers
 {
-    public class AuthorsController : Controller
+    public class AuthorsController : BaseController
     {
         private RunNow db = new RunNow();
 
@@ -85,29 +86,10 @@ namespace Music.Web.Areas.Admin.Controllers
             return View(author);
         }
 
-        // GET: Admin/Authors/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        [HttpDelete]
+        public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            author author = await db.authors.FindAsync(id);
-            if (author == null)
-            {
-                return HttpNotFound();
-            }
-            return View(author);
-        }
-
-        // POST: Admin/Authors/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
-        {
-            author author = await db.authors.FindAsync(id);
-            db.authors.Remove(author);
-            await db.SaveChangesAsync();
+            new AuthorDAO().Delete(id);
             return RedirectToAction("Index");
         }
 

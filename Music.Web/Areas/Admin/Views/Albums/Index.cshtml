@@ -45,10 +45,14 @@
             <td id="appadd">
                 @Html.DisplayFor(modelItem => item.album_view)
             </td>
-            <td>
+            <td id="del">
                 @Html.ActionLink(" ", "Edit", new { id = item.album_id }, new { @class = "fa fa-fw fa-edit" }) |
                 @Html.ActionLink(" ", "Details", new { id = item.album_id }, new { @class = "fa fa-fw fa-info" }) |
-                @Html.ActionLink(" ", "Delete", new { id = item.album_id }, new { @class = "fa fa-fw fa-trash" })
+                @Ajax.ActionLink(" ","Delete",new { id = item.album_id },new AjaxOptions {
+               Confirm="Xóa "+ item.album_name +" ?",
+               OnComplete="$('del').remove()",
+               HttpMethod = "Delete"
+           },new { @class="fa fa-fw fa-trash"})
             </td>
         </tr>
     }

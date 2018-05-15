@@ -1,4 +1,6 @@
-﻿using Music.Model.EF;
+﻿using Music.Model.Dao;
+using Music.Model.EF;
+using System;
 using System.Data.Entity;
 using System.IO;
 using System.Net;
@@ -8,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Music.Web.Areas.Admin.Controllers
 {
-    public class AlbumsController : Controller
+    public class AlbumsController : BaseController
     {
         private RunNow db = new RunNow();
 
@@ -98,30 +100,45 @@ namespace Music.Web.Areas.Admin.Controllers
             return View(album);
         }
 
-        // GET: Admin/Albums/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        //// GET: Admin/Albums/Delete/5
+        //public async Task<ActionResult> Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    album album = await db.albums.FindAsync(id);
+        //    if (album == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+
+        //    return View(album);
+        //}
+
+        //// POST: Admin/Albums/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> DeleteConfirmed(int id)
+        //{
+        //    album album = await db.albums.FindAsync(id);
+        //    db.albums.Remove(album);
+        //    await db.SaveChangesAsync();
+        //    return RedirectToAction("Index");
+        //}
+
+        [HttpDelete]
+        public ActionResult Delete(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                new AlbumDAO().Delete(id);
             }
-            album album = await db.albums.FindAsync(id);
-            if (album == null)
+            catch (Exception)
             {
-                return HttpNotFound();
+                ModelState.AddModelError("", "Xoa kho");
             }
 
-            return View(album);
-        }
-
-        // POST: Admin/Albums/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
-        {
-            album album = await db.albums.FindAsync(id);
-            db.albums.Remove(album);
-            await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
