@@ -1,5 +1,6 @@
 ﻿@model Music.Model.EF.song
 @{
+    ViewBag.Title = @Html.DisplayFor(model => model.song_name) + " - " + @Html.DisplayFor(model => model.author.author_name);
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="row">
@@ -27,6 +28,4 @@
             <input class="input-group-text" type="submit" name="cmd" value="Bình Luận" />
         </form>
     </div>
-
-    @RenderPage("~/Views/Shared/_TOP.cshtml")
 </div>

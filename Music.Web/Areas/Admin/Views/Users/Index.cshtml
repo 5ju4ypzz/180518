@@ -16,9 +16,6 @@
             @Html.DisplayNameFor(model => model.email)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.password)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.user_name)
         </th>
         <th>
@@ -45,43 +42,45 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user_dateofbirth)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user_sex)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user_address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user_phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user_image)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user_status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user_level)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.user_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.user_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.user_id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user_dateofbirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user_sex)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user_address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user_phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user_image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user_status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user_level)
+            </td>
+            <td>
+                @Html.ActionLink(" ", "Edit", new { id = item.user_id }, new { @class = "fa fa-fw fa-edit" }) |
+                @Html.ActionLink(" ", "Details", new { id = item.user_id }, new { @class = "fa fa-fw fa-info" }) |
+                @Ajax.ActionLink(" ","Delete",new { id = item.user_id },new AjaxOptions {
+               Confirm="Xóa "+item.user_id,
+               OnComplete="$('del').remove()",
+               HttpMethod = "Delete"
+           },new { @class="fa fa-fw fa-trash"})
+            </td>
+        </tr>
+    }
 </table>

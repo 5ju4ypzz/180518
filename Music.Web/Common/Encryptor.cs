@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿using System;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Music.Web.Common
@@ -25,6 +26,11 @@ namespace Music.Web.Common
             }
 
             return strBuilder.ToString();
+        }
+
+        internal static object MD5Hash(object password)
+        {
+            throw new NotImplementedException();
         }
     }
 }

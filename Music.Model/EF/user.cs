@@ -22,14 +22,17 @@
 
         [StringLength(100)]
         [DisplayName("Email")]
+        [Required(ErrorMessage = "Mời nhập Email")]
         public string email { get; set; }
 
         [StringLength(32)]
         [DisplayName("Mật khẩu")]
+        [Required(ErrorMessage = "Mời nhập Mật khẩu")]
         public string password { get; set; }
 
         [StringLength(50)]
         [DisplayName("Họ và tên")]
+        [Required(ErrorMessage = "Mời nhập Họ và Tên")]
         public string user_name { get; set; }
 
         [DisplayName("Ngày sinh")]
