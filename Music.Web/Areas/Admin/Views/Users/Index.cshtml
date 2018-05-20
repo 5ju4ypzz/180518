@@ -54,9 +54,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.user_dateofbirth)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.user_sex)
-            </td>
+            @if (item.user_sex == true)
+            {
+                <th>Nam</th>
+            }
+            else
+            {
+                <td>Nữ</td>
+            }
             <td>
                 @Html.DisplayFor(modelItem => item.user_address)
             </td>
@@ -66,12 +71,22 @@
             <td>
                 @Html.DisplayFor(modelItem => item.user_image)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.user_status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.user_level)
-            </td>
+            @if (item.user_status == true)
+            {
+                <td>Bình thường</td>
+            }
+            else
+            {
+                <td>Khóa</td>
+            }
+            @if (item.user_level == true)
+            {
+                <td>VIP</td>
+            }
+            else
+            {
+                <td>Thường</td>
+            }
             <td>
                 @Html.ActionLink(" ", "Edit", new { id = item.user_id }, new { @class = "fa fa-fw fa-edit" }) |
                 @Html.ActionLink(" ", "Details", new { id = item.user_id }, new { @class = "fa fa-fw fa-info" }) |

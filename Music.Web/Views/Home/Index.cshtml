@@ -1,14 +1,15 @@
-﻿@{
+﻿@model IEnumerable<Music.Model.EF.album>
+@{
     ViewBag.Title = "Trang chủ - Âm nhạc và cuộc sống";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="row">
-    <div class="col-md-8">
-        <a href=""><img src="~/source/images/356d0aeba28db53e43c22f0618c10f94_1514788859.jpg" width="480" alt="Đời của nó - Phạm Trưởng" /></a><hr />
-        <a href=""><img src="~/source/images/356d0aeba28db53e43c22f0618c10f94_1514788859.jpg" width="480" alt="Đời của nó - Phạm Trưởng" /></a><hr />
-        <a href=""><img src="~/source/images/356d0aeba28db53e43c22f0618c10f94_1514788859.jpg" width="490" alt="Đời của nó - Phạm Trưởng" /></a><hr />
-        <a href=""><img src="~/source/images/356d0aeba28db53e43c22f0618c10f94_1514788859.jpg" width="480" alt="Đời của nó - Phạm Trưởng" /></a><hr />
-        <a href=""><img src="~/source/images/356d0aeba28db53e43c22f0618c10f94_1514788859.jpg" width="480" alt="Đời của nó - Phạm Trưởng" /></a><hr />
-        <a href=""><img src="~/source/images/356d0aeba28db53e43c22f0618c10f94_1514788859.jpg" width="480" alt="Đời của nó - Phạm Trưởng" /></a><hr />
+    <div class="col-md-6">
+        @foreach (var item in Model)
+        {
+            <p>@Html.DisplayFor(model => item.album_name)</p>
+            <a href=""><img src="@Url.Content(item.album_image)" width="480" alt="@Html.DisplayFor(model => item.album_name)" /></a><hr />
+
+        }
     </div>
 </div>

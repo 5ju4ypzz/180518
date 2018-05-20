@@ -30,7 +30,7 @@ namespace Music.Web.Areas.Admin.Controllers
 
             if (song == null)
             {
-                return HttpNotFound();
+                return View("Error");
             }
             return View(song);
         }
@@ -51,33 +51,31 @@ namespace Music.Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 if (song.song_name == null)
-                    ModelState.AddModelError("", "Moi nhap ten bai hat - Ten bai hat khong duoc trong");
-                else if (song.song_lyric == null)
+                    ModelState.AddModelError("", "Mời nhập tên bài hát- Tên bài hát không được trống");
+                var file = Request.Files[0];
+                if (file != null && file.ContentLength > 0)
                 {
-                    ModelState.AddModelError("", "Moi nhap ten bai hat");
-                }
-                else
-                {
-                    var file = Request.Files[0];
-                    if (file != null && file.ContentLength > 0)
+                    var _FileName = Path.GetFileName(file.FileName);
+                    var _Ext = Path.GetExtension(file.FileName);
+                    var path = Path.Combine(Server.MapPath("~/source/audio/"), _FileName + "");
+                    song.song_path = "~/source/audio/" + _FileName;
+                    if (System.IO.File.Exists(path))
                     {
-                        var _FileName = Path.GetFileName(file.FileName);
-                        var _Ext = Path.GetExtension(file.FileName);
-                        var path = Path.Combine(Server.MapPath("~/source/audio/"), _FileName + "");
-                        song.song_path = "~/source/audio/" + _FileName;
-                        if (System.IO.File.Exists(path))
-                        {
-                            var _NewName = Guid.NewGuid();
-                            _FileName = _NewName.ToString();
-                            path = Path.Combine(Server.MapPath("~/source/audio/"), _NewName + _Ext);
-                            song.song_path = "~/source/audio/" + _NewName + _Ext;
-                        }
-                        SUpload.SaveAs(path);
+                        var _NewName = Guid.NewGuid();
+                        _FileName = _NewName.ToString();
+                        path = Path.Combine(Server.MapPath("~/source/audio/"), _NewName + _Ext);
+                        song.song_path = "~/source/audio/" + _NewName + _Ext;
                     }
-                    song.song_view = 1;
-                    db.Entry(song).State = EntityState.Added;
-                    song.song_datemodify = DateTime.Now;
+                    SUpload.SaveAs(path);
                 }
+                if (song.song_lyric == null)
+                {
+                    song.song_lyric = "Chưa cập nhật";
+                }
+                song.song_view = 1;
+                db.Entry(song).State = EntityState.Added;
+                song.song_datemodify = DateTime.Now;
+
                 db.songs.Add(song);
                 await db.SaveChangesAsync();
             }
@@ -87,6 +85,7 @@ namespace Music.Web.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -104,7 +103,8 @@ namespace Music.Web.Areas.Admin.Controllers
             return View(song);
         }
 
-        [HttpPost]
+        //Run well.
+        [HttpPost, ActionName("Edit")]
         [ValidateInput(false)]
         public async Task<ActionResult> Edit([Bind(Include = "song_id,album_id,singer_id,author_id,song_name,song_path,song_lyric,song_datemodify")] song song, HttpPostedFileBase SUpload, int id)
         {
@@ -117,14 +117,13 @@ namespace Music.Web.Areas.Admin.Controllers
                     var _Ext = Path.GetExtension(file.FileName);
                     var path = Path.Combine(Server.MapPath("~/source/audio/"), _FileName + "");
                     song.song_path = "~/source/audio/" + _FileName;
-                    if (System.IO.File.Exists(path) == true)
+                    if (System.IO.File.Exists(path))
                     {
                         var _NewName = Guid.NewGuid();
                         _FileName = _NewName.ToString();
-                        path = Path.Combine(Server.MapPath("~/source/audio/"), _NewName + _Ext);
-                        song.song_path = "~/source/audio/" + _NewName + _Ext;
+                        path = Path.Combine(Server.MapPath("~/source/audio/"), _FileName + _Ext);
+                        song.song_path = "~/source/audio/" + _FileName + _Ext;
                     }
-                    song.song_view = song.song_view;
                     song.song_datemodify = DateTime.Now;
                     SUpload.SaveAs(path);
                     db.Entry(song).State = EntityState.Modified;

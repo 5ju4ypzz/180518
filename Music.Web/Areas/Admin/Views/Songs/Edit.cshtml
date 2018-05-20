@@ -59,7 +59,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.song_lyric, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-auto">
-                    @Html.TextAreaFor(model => model.song_lyric, 15, 100, new { @class = "form-control ckeditor" })
+                    @Html.TextAreaFor(model => model.song_lyric, 15, 100, new { @class = "form-control ckeditor",@valu="Đang cập nhật" })
                     @Html.ValidationMessageFor(model => model.song_lyric, "", new { @class = "text-danger" })
                 </div>
             </div>

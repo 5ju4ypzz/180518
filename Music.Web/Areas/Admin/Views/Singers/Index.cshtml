@@ -4,13 +4,13 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+<a href="~/Admin/Singers/Create">
 
-<h2>Index</h2>
+    <i class="fa fa-fw fa-plus">
+    </i>Thêm Ca sĩ
+</a>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<table class="table" id="Select-b" style="table-layout:fixed;">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.singer_name)
@@ -48,9 +48,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.singer_nickname)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.singer_sex)
-            </td>
+            @if (item.singer_sex == true)
+            {
+                <td>Nam</td>
+            }
+            else
+            {
+                <td>Nữ</td>
+            }
             <td>
                 @Html.DisplayFor(modelItem => item.singer_country)
             </td>
@@ -63,7 +68,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.singer_dateofbirth)
             </td>
-            <td>
+            <td id="appadd">
                 @Html.DisplayFor(modelItem => item.singer_description)
             </td>
             <td id="del">

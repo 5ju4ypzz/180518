@@ -44,6 +44,8 @@
         public string singer_cover_image { get; set; }
 
         [DisplayName("Sinh nhật")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? singer_dateofbirth { get; set; }
 
         [StringLength(3000)]

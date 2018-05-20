@@ -4,12 +4,11 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+<a href="~/Admin/Genres/Create">
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    <i class="fa fa-fw fa-plus">
+    </i>Thêm Ca sĩ
+</a>
 <table class="table">
     <tr>
         <th>
@@ -18,16 +17,17 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.genre_name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.genre_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.genre_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.genre_id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.genre_name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.genre_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.genre_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.genre_id })
+            </td>
+        </tr>
+    }
 </table>

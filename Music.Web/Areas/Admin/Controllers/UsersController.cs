@@ -77,7 +77,7 @@ namespace Music.Web.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "user_id,email,password,user_name,user_dateofbirth,user_sex,user_address,user_phone,user_image,user_status,user_level")] user user)
+        public async Task<ActionResult> Edit([Bind(Include = "user_id,user_name,user_dateofbirth,user_sex,user_address,user_phone,user_image")] user user)
         {
             if (ModelState.IsValid)
             {

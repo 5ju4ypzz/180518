@@ -4,12 +4,11 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+<a href="~/Admin/Songs/Create">
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    <i class="fa fa-fw fa-plus">
+    </i>Thêm Bài hát mới
+</a>
 <table class="table" id="Select-b" style="table-layout:fixed;">
     <tr>
         <th>
@@ -47,7 +46,7 @@
             <td id="appadd">
                 @Html.DisplayFor(modelItem => item.song_name)
             </td>
-            <td id="appadd">
+            <td id="appadd" class="text-center">
                 @Html.DisplayFor(modelItem => item.song_view)
             </td>
 

@@ -39,7 +39,8 @@
         [DisplayName("Đường dẫn bài hát")]
         public string song_path { get; set; }
 
-        [StringLength(3000)]
+        [Column(TypeName = "ntext")]
+        [MaxLength]
         [Required(ErrorMessage = "Mời nhập Lời bài hát")]
         [DisplayName("Lời bài hát")]
         public string song_lyric { get; set; }

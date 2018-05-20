@@ -88,44 +88,33 @@ namespace Music.Web.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "album_id,singer_id,album_name,album_createdate,album_image,album_view,album_viewed_day,album_viewed_week,album_viewed_month")] album album)
+        public async Task<ActionResult> Edit([Bind(Include = "album_id,singer_id,album_name,album_createdate,album_image")] album album, HttpPostedFileBase Upload)
         {
             if (ModelState.IsValid)
             {
+                var path = "";
+                var file = Request.Files[0];
+                if (file != null && file.ContentLength > 0)
+                {
+                    string _FileName = Path.GetFileName(file.FileName);
+                    string _Ext = Path.GetExtension(file.FileName);
+                    path = Path.Combine(Server.MapPath("~/source/images/"), _FileName);
+                    // Kiễm tra tồn tại file.
+                    if (System.IO.File.Exists(path))
+                    {
+                        System.IO.File.Delete(path);
+                    }
+                    album.album_image = "~/source/images/" + _FileName;
+                    album.album_createdate = DateTime.Now;
+                    Upload.SaveAs(path);
+                }
                 db.Entry(album).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             ViewBag.singer_id = new SelectList(db.singers, "singer_id", "singer_name", album.singer_id);
-            return View(album);
+            return View();
         }
-
-        //// GET: Admin/Albums/Delete/5
-        //public async Task<ActionResult> Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    album album = await db.albums.FindAsync(id);
-        //    if (album == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-
-        //    return View(album);
-        //}
-
-        //// POST: Admin/Albums/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> DeleteConfirmed(int id)
-        //{
-        //    album album = await db.albums.FindAsync(id);
-        //    db.albums.Remove(album);
-        //    await db.SaveChangesAsync();
-        //    return RedirectToAction("Index");
-        //}
 
         [HttpDelete]
         public ActionResult Delete(int? id)

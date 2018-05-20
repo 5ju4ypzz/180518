@@ -4,9 +4,11 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-<h3>
-    @Html.ActionLink("Thêm Album mới", "Create")
-</h3>
+<a href="~/Admin/Albums/Create">
+
+    <i class="fa fa-fw fa-plus">
+    </i>Thêm Album
+</a>
 <table class="table" id="Select-b" style="table-layout:fixed;">
     <tr>
         <th>
